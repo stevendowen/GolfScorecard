@@ -1,3 +1,22 @@
+body {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #dadfea;
+}
 
+.courses {
+  display: flex;
+  flex-direction: column;
+}
+.courses .course {
+  margin: 10px;
+  background-color: #dadfea;
+}
+.courses .course .cardbottom {
+  display: flex;
+  justify-content: space-between;
+}
 
 /*# sourceMappingURL=style.css.map */

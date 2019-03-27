@@ -1,0 +1,26 @@
+
+
+
+body{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #dadfea;
+}
+
+.courses{
+  display: flex;
+  flex-direction: column;
+
+  .course{
+    margin: 10px;
+    background-color: #dadfea;
+
+    .cardbottom{
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}
+
