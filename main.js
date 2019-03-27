@@ -1,6 +1,9 @@
 
 
-loadCourses();
+function hideAndShow(){
+    $('.home').fadeOut(100, loadCourses());
+}
+
 
 function loadCourses() {
     var xhttp = new XMLHttpRequest();
@@ -15,10 +18,13 @@ function loadCourses() {
                 $('.courses').append(`<div class="course mdl-card-square mdl-shadow--16dp">
                 <img src="${img}">
                 <div class="cardbottom mdl-card__actions">
-                <h2 class="mdl-card__title-text">${course.name}</h2>
-                <button class="mdl-button mdl-js-button mdl-js-ripple-effect">Select Course</button>
+                <h2 class="name mdl-card__title-text">${course.name}</h2>
+                <button class="mdl-button mdl-js-button mdl-js-ripple-effect">Play
+                <i class="fas fa-golf-ball"></i>
+                </button>
                 </div>
                 </div>`);
+                $('.coursebox').fadeIn(2000);
             }
         }
     };
