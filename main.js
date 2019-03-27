@@ -16,7 +16,7 @@ function loadCourses() {
                 <img src="${img}">
                 <div class="cardbottom mdl-card__actions">
                 <h2 class="mdl-card__title-text">${course.name}</h2>
-                <button class="mdl-button mdl-js-button mdl-js-ripple-effect">Button</button>
+                <button class="mdl-button mdl-js-button mdl-js-ripple-effect">Select Course</button>
                 </div>
                 </div>`);
             }
