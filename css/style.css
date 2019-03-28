@@ -40,4 +40,13 @@ body {
   margin-bottom: 5px;
 }
 
+.teetypes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.teetypes h6 {
+  margin: 0;
+}
+
 /*# sourceMappingURL=style.css.map */
