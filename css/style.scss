@@ -55,3 +55,41 @@ body{
   }
 }
 
+.coursemain{
+  display: none;
+}
+
+.courseinfo{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background-color: #dadfea;
+  border: 1px solid #000000;
+
+  h2, h4{
+    margin: 0;
+  }
+  h6{
+    margin-top: 0;
+  }
+}
+
+.scorebox{
+  display: flex;
+  border: 1px solid #000000;
+  background-color: #dadfea;
+
+  .scorecard{
+    display: flex;
+
+    .hole, .par{
+      text-align: center;
+      border: 1px solid #000000;
+      height: 25px;
+      width: 50px;
+    }
+  }
+}
+
+
