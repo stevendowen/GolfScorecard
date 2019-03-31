@@ -6,7 +6,6 @@ function showCourses(){
     $('.home').fadeOut(100, loadCourses());
 }
 
-
 function loadCourses() {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
@@ -36,11 +35,11 @@ function loadCourses() {
 }
 
 function hideCourses(courseid){
-    $('.coursebox').fadeOut(100, getCourse(courseid));
+    $('.coursebox').fadeOut(100, loadCourse(courseid));
 }
 
 
-function getCourse(courseid) {
+function loadCourse(courseid) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -55,7 +54,7 @@ function getCourse(courseid) {
     xhttp.send();
 }
 
-function loadCourseInfo(courseid){
+function loadCourseInfo(){
     let name = selectedcourse.data.name;
     let address = selectedcourse.data.addr1;
     let city = selectedcourse.data.city;
@@ -68,17 +67,33 @@ function loadCourseInfo(courseid){
             <h4>${address} - ${city}, ${state} ${zip}</h4>
             <h4>${phone}</h4>
             <h6>${website}</h6>`);
-    loadHoles(courseid);
+    displayFrontNine();
 }
 
-function loadHoles(){
+function displayFrontNine(){
     let holes = selectedcourse.data.holes;
-    for(let h = 0; h < holes.length; h++){
+    for(let h = 0; h < 9; h++){
         let hole = holes[h].hole;
         let par = holes[h].teeBoxes[0].par;
-        $('.scorecard').append(`<div><span>Hole</span><div class="hole">Hole ${hole}</div>
+        $('.scorecard').append(`<div><div class="hole">Hole ${hole}</div>
                 <div class="par">Par ${par}</div>
                 </div>`);
         $('.coursemain').fadeIn(600);
     }
+    $('.scorecard').append(`<div class="total">Out Total</div>`);
+    displayBackNine();
+}
+
+function displayBackNine(){
+    let holes = selectedcourse.data.holes;
+    for(let h = 9; h < holes.length; h++){
+        let hole = holes[h].hole;
+        let par = holes[h].teeBoxes[0].par;
+        $('.scorecard').append(`<div><div class="hole">Hole ${hole}</div>
+                <div class="par">Par ${par}</div>
+                </div>`);
+        $('.coursemain').fadeIn(600);
+    }
+    $('.scorecard').append(`<div class="total">In Total</div>`);
+    $('.scorecard').append(`<div class="total">Total</div>`);
 }
