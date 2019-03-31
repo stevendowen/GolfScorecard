@@ -47,30 +47,38 @@ function getCourse(courseid) {
 
             selectedcourse = JSON.parse(this.responseText);
             console.log(selectedcourse);
-            let name = selectedcourse.data.name;
-            let holes = selectedcourse.data.holes;
-            let address = selectedcourse.data.addr1;
-            let city = selectedcourse.data.city;
-            let state = selectedcourse.data.stateOrProvince;
-            let zip = selectedcourse.data.zipCode;
-            let website = selectedcourse.data.website;
-            let phone = selectedcourse.data.phone;
+            loadCourseInfo(courseid);
 
-            $('.courseinfo').append(`<h2>${name}</h2>
-            <h4>${address} - ${city}, ${state} ${zip}</h4>
-            <h4>${phone}</h4>
-            <h6>${website}</h6>`);
-            console.log(holes);
-            for(let h = 0; h < holes.length; h++){
-                let hole = holes[h].hole;
-                let par = holes[h].teeBoxes[0].par;
-                $('.scorecard').append(`<div><div class="hole">${hole}</div>
-                <div class="par">${par}</div>
-                </div>`);
-                $('.coursemain').fadeIn(600);
-            }
         }
     };
     xhttp.open("GET", `https://golf-courses-api.herokuapp.com/courses/${courseid}`, true);
     xhttp.send();
+}
+
+function loadCourseInfo(courseid){
+    let name = selectedcourse.data.name;
+    let address = selectedcourse.data.addr1;
+    let city = selectedcourse.data.city;
+    let state = selectedcourse.data.stateOrProvince;
+    let zip = selectedcourse.data.zipCode;
+    let website = selectedcourse.data.website;
+    let phone = selectedcourse.data.phone;
+
+    $('.courseinfo').append(`<h2>${name}</h2>
+            <h4>${address} - ${city}, ${state} ${zip}</h4>
+            <h4>${phone}</h4>
+            <h6>${website}</h6>`);
+    loadHoles(courseid);
+}
+
+function loadHoles(){
+    let holes = selectedcourse.data.holes;
+    for(let h = 0; h < holes.length; h++){
+        let hole = holes[h].hole;
+        let par = holes[h].teeBoxes[0].par;
+        $('.scorecard').append(`<div><span>Hole</span><div class="hole">Hole ${hole}</div>
+                <div class="par">Par ${par}</div>
+                </div>`);
+        $('.coursemain').fadeIn(600);
+    }
 }
