@@ -4,6 +4,10 @@ body{
   justify-content: center;
   align-items: center;
   background-color: #3C591E;
+  background-image: url("golfball.png"), url("golfclub.png");
+  background-size: 400px;
+  background-repeat: no-repeat;
+  background-position: left center, right center;
 }
 
 .home{
@@ -84,7 +88,7 @@ body{
     display: flex;
     width: 100%;
 
-    .hole, .par{
+    .hole, .par, .hcp, .yards{
       text-align: center;
       border: 1px solid #000000;
       height: 25px;
