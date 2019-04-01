@@ -47,24 +47,6 @@ body {
 .coursemain {
   display: none;
 }
-.coursemain .titlebottom {
-  background-color: #dadfea;
-  width: 150px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-.coursemain .titlebottom .hcpyards {
-  display: flex;
-  width: 100%;
-}
-.coursemain .titlebottom .hcpyards .hcp, .coursemain .titlebottom .hcpyards yards {
-  text-align: center;
-  border: 1px solid #000000;
-  height: 25px;
-  width: 50px;
-}
 
 .courseinfo {
   display: flex;
@@ -112,7 +94,7 @@ body {
 }
 .scorebox .scorecard .totalbox {
   width: 50px;
-  height: 52px;
+  height: 80px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -137,9 +119,27 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  border: 1px solid #000000;
 }
 .playerbox .namebox .input {
   margin-left: 5px;
+}
+.playerbox .namebox .player {
+  width: 150px;
+  border: 1px solid #000000;
+}
+.playerbox .namebox .scores {
+  border-right: 1px solid #000000;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.playerbox .namebox .holescore {
+  border: 1px solid #000000;
+  height: 25px;
+  width: 25px;
 }
 
 /*# sourceMappingURL=style.css.map */
