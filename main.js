@@ -1,6 +1,7 @@
 
 
 let selectedcourse;
+const add = (a,b) => a + b;
 
 function showCourses(){
     $('.home').fadeOut(100, loadCourses());
@@ -40,14 +41,16 @@ function hideCourses(courseid){
 
 
 function loadCourse(courseid) {
-    let tees = $('.cardbottom').parent();
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
 
             selectedcourse = JSON.parse(this.responseText);
             console.log(selectedcourse);
-            $(tees).append(`<div>Here</div>`);
+            $('.scorecard').append(`<div class="titlebox"><div class="title">Hole</div>
+            <div class="title">Par</div>
+            </div>`);
+            displayPlayers();
             loadCourseInfo(courseid);
 
         }
@@ -74,36 +77,70 @@ function loadCourseInfo(){
 
 function displayFrontNine(){
     let holes = selectedcourse.data.holes;
+    let pars = [];
+    let partotal = 0;
     for(let h = 0; h < 9; h++){
         let hole = holes[h].hole;
         let par = holes[h].teeBoxes[0].par;
-        let handicap = holes[h].teeBoxes[0].hcp;
-        let yards = holes[h].teeBoxes[0].yards;
-        $('.scorecard').append(`<div><div class="hole">Hole ${hole}</div>
-                <div class="par">Par ${par}</div>
-                <div class="hcp">HCP ${handicap}</div>
-                <div class="yards">${yards}</div>
+        $('.scorecard').append(`<div><div class="hole">${hole}</div>
+                <div class="par">${par}</div>
                 </div>`);
         $('.coursemain').fadeIn(600);
+        pars.push(par);
+        partotal = pars.reduce(add);
     }
-    $('.scorecard').append(`<div class="total">Out Total</div>`);
+    $('.scorecard').append(`<div class="totalbox">
+    <div class="total">Out</div>
+    <div class="total">${partotal}</div>
+    </div>`);
     displayBackNine();
 }
 
 function displayBackNine(){
     let holes = selectedcourse.data.holes;
+    let pars = [];
+    let partotal = 0;
     for(let h = 9; h < holes.length; h++){
         let hole = holes[h].hole;
         let par = holes[h].teeBoxes[0].par;
-        let handicap = holes[h].teeBoxes[0].hcp;
-        let yards = holes[h].teeBoxes[0].yards;
-        $('.scorecard').append(`<div><div class="hole">Hole ${hole}</div>
-                <div class="par">Par ${par}</div>
-                <div class="hcp">HCP ${handicap}</div>
-                <div class="yards">${yards}</div>
+        $('.scorecard').append(`<div><div class="hole">${hole}</div>
+                <div class="par">${par}</div>
                 </div>`);
         $('.coursemain').fadeIn(600);
+        pars.push(par);
+        partotal = pars.reduce(add);
     }
-    $('.scorecard').append(`<div class="total">In Total</div>`);
-    $('.scorecard').append(`<div class="total">Total</div>`);
+    $('.scorecard').append(`<div class="totalbox">
+    <div class="total">In</div>
+    <div class="total">${partotal}</div>
+    </div>`);
+    $('.scorecard').append(`<div class="totalbox">Total</div>`);
+}
+
+function displayPlayers(){
+
+}
+
+function displayFrontHcpYards(){
+    let holes = selectedcourse.data.holes;
+    for(let h = 0; h < 9; h++){
+        let handicap = holes[h].teeBoxes[0].hcp;
+        let yards = holes[h].teeBoxes[0].yards;
+        $('.scorecard').append(`<div>
+        <div class="hcp">HCP ${handicap}</div>
+        <div class="yards">${yards}</div>
+        </div>`)
+    }
+}
+
+function displayBackHcpYards(){
+    let holes = selectedcourse.data.holes;
+    for(let h = 9; h < holes.length; h++){
+        let handicap = holes[h].teeBoxes[0].hcp;
+        let yards = holes[h].teeBoxes[0].yards;
+        $('.scorecard').append(`<div>
+        <div class="hcp">HCP ${handicap}</div>
+        <div class="yards">${yards}</div>
+        </div>`);
+    }
 }

@@ -72,6 +72,20 @@ body {
   margin-top: 0;
 }
 
+.titlebox {
+  width: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.titlebox .title {
+  text-align: center;
+  border: 1px solid #000000;
+  height: 25px;
+  width: 150px;
+}
+
 .scorebox {
   display: flex;
   border: 1px solid #000000;
@@ -87,13 +101,21 @@ body {
   height: 25px;
   width: 50px;
 }
-.scorebox .scorecard .total {
-  width: 40px;
+.scorebox .scorecard .totalbox {
+  width: 50px;
+  height: 52px;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
+  flex-direction: column;
   border: 1px solid #000000;
+}
+.scorebox .scorecard .totalbox .total {
+  text-align: center;
+  border: 1px solid #000000;
+  height: 25px;
+  width: 50px;
 }
 
 /*# sourceMappingURL=style.css.map */
