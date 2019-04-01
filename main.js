@@ -1,6 +1,7 @@
 
 
 let selectedcourse;
+let partotal;
 const add = (a,b) => a + b;
 
 function showCourses(){
@@ -51,6 +52,9 @@ function loadCourse(courseid) {
             <div class="title">Par</div>
             </div>`);
             displayPlayers();
+            $('.coursemain').append(`<div class="titlebottom"><div class="title">Handicap</div>
+            <div class="title">Yards</div>
+            </div>`);
             loadCourseInfo(courseid);
 
         }
@@ -78,7 +82,6 @@ function loadCourseInfo(){
 function displayFrontNine(){
     let holes = selectedcourse.data.holes;
     let pars = [];
-    let partotal = 0;
     for(let h = 0; h < 9; h++){
         let hole = holes[h].hole;
         let par = holes[h].teeBoxes[0].par;
@@ -99,7 +102,6 @@ function displayFrontNine(){
 function displayBackNine(){
     let holes = selectedcourse.data.holes;
     let pars = [];
-    let partotal = 0;
     for(let h = 9; h < holes.length; h++){
         let hole = holes[h].hole;
         let par = holes[h].teeBoxes[0].par;
@@ -115,32 +117,43 @@ function displayBackNine(){
     <div class="total">${partotal}</div>
     </div>`);
     $('.scorecard').append(`<div class="totalbox">Total</div>`);
+    displayHcpFrontNine();
 }
 
 function displayPlayers(){
-
+    $('.coursemain').append(`<div class="playerbox">
+    <div class="namebox">
+    <input class="input" type="text" placeholder="Add Player" onkeyup="addPlayer(this.value, event)">
+    </div>
+    <div>Players Scores</div>
+    </div>`);
+    for(let p = 0; p < golfplayers.playerCollection.length; p++){
+        let players = golfplayers.playerCollection[p].name;
+        $('.namebox').append(`<div>${players}</div>`);
+        if(golfplayers.playerCollection.length === 4){
+            $('.input').hide();
+        }
+    }
+    console.log(golfplayers.playerCollection);
 }
 
-function displayFrontHcpYards(){
-    let holes = selectedcourse.data.holes;
-    for(let h = 0; h < 9; h++){
-        let handicap = holes[h].teeBoxes[0].hcp;
-        let yards = holes[h].teeBoxes[0].yards;
-        $('.scorecard').append(`<div>
-        <div class="hcp">HCP ${handicap}</div>
-        <div class="yards">${yards}</div>
-        </div>`)
+function addPlayer(val, event){
+    switch(event.which){
+        case 13:
+            let id = golfplayers.playerCollection.length + 1;
+            golfplayers.addPlayer(id, val);
+            $('.playerbox').html("");
+            displayPlayers();
+            $('.input').val('');
+            $('.input').focus();
+            break;
     }
 }
 
-function displayBackHcpYards(){
+function displayHcpFrontNine(){
     let holes = selectedcourse.data.holes;
-    for(let h = 9; h < holes.length; h++){
-        let handicap = holes[h].teeBoxes[0].hcp;
+    for(let h = 0; h < 9; h++) {
+        let hcp = holes[h].teeBoxes[0].hcp;
         let yards = holes[h].teeBoxes[0].yards;
-        $('.scorecard').append(`<div>
-        <div class="hcp">HCP ${handicap}</div>
-        <div class="yards">${yards}</div>
-        </div>`);
     }
 }
