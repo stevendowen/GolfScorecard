@@ -53,12 +53,11 @@ function loadCourse(courseid) {
 
             selectedcourse = JSON.parse(this.responseText);
             console.log(selectedcourse);
-            $('.scorecard').append(`<div class="titlebox"><div class="title">Hole</div>
-            <div class="title">Par</div>
-            <div class="title">Yards</div>
-            <div class="title">Handicap</div>
+            $('.scorecard').append(`<div class="titlebox"><div class="title"><span>Hole</span></div>
+            <div class="title"><span>Par</span></div>
+            <div class="title"><span>Yards</span></div>
+            <div class="title"><span>Handicap</span></div>
             </div>`);
-            displayPlayers();
             loadCourseInfo(courseid);
 
         }
@@ -79,7 +78,8 @@ function loadCourseInfo(){
     $('.courseinfo').append(`<h2>${name}</h2>
             <h4>${address} - ${city}, ${state} ${zip}</h4>
             <h4>${phone}</h4>
-            <h6>${website}</h6>`);
+            <h6>${website}</h6>
+            <input class="input" type="text" placeholder="Add Player" onkeyup="addPlayer(this.value, event)">`);
     displayFrontNine();
 }
 
@@ -104,7 +104,7 @@ function displayFrontNine(){
         yardtotal = yards.reduce(add);
     }
     $('.scorecard').append(`<div class="totalbox">
-    <div class="total">Out</div>
+    <div class="total"><span>Out</span></div>
     <div class="total">${partotal}</div>
     <div class="total">${yardtotal}</div>
     </div>`);
@@ -134,7 +134,7 @@ function displayBackNine(){
         yardtotal = yards.reduce(add);
     }
     $('.scorecard').append(`<div class="totalbox">
-    <div class="total">In</div>
+    <div class="total"><span>In</span></div>
     <div class="total">${partotal}</div>
     <div class="total">${yardtotal}</div>
     </div>`);
@@ -143,7 +143,7 @@ function displayBackNine(){
     allpar = totalpar.reduce(add);
     allyards = totalyards.reduce(add);
     $('.scorecard').append(`<div class="totalbox">
-    <div class="total">Total</div>
+    <div class="total"><span>Total</span></div>
     <div class="total">${allpar}</div>
     <div class="total">${allyards}</div>  
     </div>`);
@@ -151,21 +151,24 @@ function displayBackNine(){
 
 function displayPlayers(){
     $('.playerbox').html("");
-    $('.coursemain').append(`<div class="playerbox">
-    <div class="namebox">
-    <input class="input" type="text" placeholder="Add Player" onkeyup="addPlayer(this.value, event)">
-    </div>
-    <div class="scores"></div>
-    </div>`);
+    $('.playerbox').append(`<div class="namebox"></div>
+    <div class="scores"></div>`);
     for(let p = 0; p < golfplayers.playerCollection.length; p++){
         let players = golfplayers.playerCollection[p].name;
         $('.namebox').append(`<div class="player">${players}</div>`);
-        for(let h = 0; h < 9; h++){
-            $('.scores').append(`<div class="holescore">${p}${h}</div>`);
+        $('.scores').append(`<div id="out${p}" class="out"></div>`);
+        for(let o = 0; o < 9; o++){
+            $(`#out${p}`).append(`<input class="holescore" placeholder="${p}${o}">`);
         }
         if(golfplayers.playerCollection.length === 4){
             $('.input').hide();
         }
+        $(`#out${p}`).append(`<div class="holescore"><span>Out</span></div>`);
+        for(let i = 9; i < 18; i++){
+            $(`#out${p}`).append(`<input class="holescore" placeholder="${p}${i}">`);
+        }
+        $(`#out${p}`).append(`<div class="holescore"><span>In</span></div>`);
+        $(`#out${p}`).append(`<div class="holescore"><span>Total</span></div>`);
     }
     console.log(golfplayers.playerCollection);
 }
@@ -180,4 +183,8 @@ function addPlayer(val, event){
             $('.input').focus();
             break;
     }
+}
+
+function addScore(){
+    
 }
