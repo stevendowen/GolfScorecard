@@ -156,19 +156,19 @@ function displayPlayers(){
     for(let p = 0; p < golfplayers.playerCollection.length; p++){
         let players = golfplayers.playerCollection[p].name;
         $('.namebox').append(`<div class="player">${players}</div>`);
-        $('.scores').append(`<div id="out${p}" class="out"></div>`);
+        $('.scores').append(`<div id="p${p}" class="out"></div>`);
         for(let o = 0; o < 9; o++){
-            $(`#out${p}`).append(`<input class="holescore" placeholder="${p}${o}">`);
+            $(`#p${p}`).append(`<input id="p${p}h${o}" onfocusout="addOutScore(${p}, ${o})" class="holescore">`);
         }
         if(golfplayers.playerCollection.length === 4){
             $('.input').hide();
         }
-        $(`#out${p}`).append(`<div class="holescore"><span>Out</span></div>`);
+        $(`#p${p}`).append(`<div id="out${p}" class="holescore"></div>`);
         for(let i = 9; i < 18; i++){
-            $(`#out${p}`).append(`<input class="holescore" placeholder="${p}${i}">`);
+            $(`#p${p}`).append(`<input id="p${p}h${i}" onfocusout="addInScore(${p}, ${i})" class="holescore">`);
         }
-        $(`#out${p}`).append(`<div class="holescore"><span>In</span></div>`);
-        $(`#out${p}`).append(`<div class="holescore"><span>Total</span></div>`);
+        $(`#p${p}`).append(`<div id="in${p}" class="holescore"></div>`);
+        $(`#p${p}`).append(`<div id="total${p}" class="holescore"></div>`);
     }
     console.log(golfplayers.playerCollection);
 }
@@ -185,6 +185,28 @@ function addPlayer(val, event){
     }
 }
 
-function addScore(){
-    
+function addOutScore(playerid){
+    let total = 0;
+    for(let o = 0; o < 9; o++){
+        total += Number($(`#p${playerid}h${o}`).val());
+    }
+    $(`#out${playerid}`).html(total);
+    addTotalScore(playerid);
+}
+
+function addInScore(playerid){
+    let total = 0;
+    for(let i = 9; i < 18; i++){
+        total += Number($(`#p${playerid}h${i}`).val());
+    }
+    $(`#in${playerid}`).html(total);
+    addTotalScore(playerid);
+}
+
+function addTotalScore(playerid){
+    let totalscore = 0;
+    for(let t = 0; t < 18; t++){
+        totalscore += Number($(`#p${playerid}h${t}`).val());
+    }
+    $(`#total${playerid}`).html(totalscore);
 }

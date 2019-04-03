@@ -9,21 +9,16 @@ class Players{
     }
 }
 
-class Player{
-    constructor(id, name){
+class Player {
+    constructor(id, name) {
         this.name = name;
         this.id = id;
-        this.score = [];
+        this.scores = [];
     }
-    addScore(id){
-        this.score.push(new Scores(id));
+    addScore() {
     }
 }
 
-class Scores{
-    constructor(){
-        this.score = score;
-    }
-}
+
 
 let golfplayers = new Players();
