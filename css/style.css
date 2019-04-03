@@ -131,6 +131,9 @@ body {
 .playerbox .namebox .player {
   margin: 0;
   padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 150px;
   height: 25px;
 }

@@ -79,11 +79,25 @@ function loadCourseInfo(){
             <h4>${address} - ${city}, ${state} ${zip}</h4>
             <h4>${phone}</h4>
             <h6>${website}</h6>
-            <input class="input" type="text" placeholder="Add Player" onkeyup="addPlayer(this.value, event)">`);
+            <input class="input" type="text" placeholder="Add Player" onkeyup="addPlayer(this.value, event)">
+            <select class="teeselect"></select>`);
+    teeSelect();
     displayFrontNine();
 }
 
-function displayFrontNine(){
+function teeSelect(){
+    let holes = selectedcourse.data.holes;
+    let tee;
+    for(let h = 0; h < holes.length; h++){
+        tee = holes[h].teeBoxes;
+    }
+    for(let t = 0; t < tee.length; t++){
+        let teetype = tee[t].teeType;
+        $('.teeselect').append(`<option id="tee${t}">${teetype}</option>`)
+    }
+}
+
+function displayFrontNine(teeid){
     let holes = selectedcourse.data.holes;
     let pars = [];
     let yards = [];
@@ -97,7 +111,6 @@ function displayFrontNine(){
                 <div class="par">${yard}</div>
                 <div class="par">${handicap}</div>
                 </div>`);
-        $('.coursemain').fadeIn(600);
         pars.push(par);
         yards.push(yard);
         partotal = pars.reduce(add);
