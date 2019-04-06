@@ -107,7 +107,7 @@ function displayHoles(holes){
 }
 
 function hideTeeBox(teeindex){
-    $('.teebox').hide(displayFrontHcpParYards(teeindex));
+    $('.teebox').slideUp(100, displayFrontHcpParYards(teeindex));
 }
 
 function displayFrontHcpParYards(teeindex){
@@ -115,9 +115,9 @@ function displayFrontHcpParYards(teeindex){
     let holes = selectedcourse.data.holes;
     for(let t = 0; t < 9; t++){
         $('.hcpyardbox').append(`<div>
-        <div class="par">${holes[t].teeBoxes[selectedtee].hcp}</div>
         <div class="par">${holes[t].teeBoxes[selectedtee].par}</div>
         <div class="par">${holes[t].teeBoxes[selectedtee].yards}</div>
+        <div class="par">${holes[t].teeBoxes[selectedtee].hcp}</div>
         </div>`);
     }
     $('.hcpyardbox').append(`<div class="totalbox">
@@ -131,9 +131,9 @@ function displayBackHcpParYards(teeindex){
     let holes = selectedcourse.data.holes;
     for(let t = 9; t < holes.length; t++){
         $('.hcpyardbox').append(`<div>
-        <div class="par">${holes[t].teeBoxes[selectedtee].hcp}</div>
         <div class="par">${holes[t].teeBoxes[selectedtee].par}</div>
         <div class="par">${holes[t].teeBoxes[selectedtee].yards}</div>
+        <div class="par">${holes[t].teeBoxes[selectedtee].hcp}</div>
         </div>`);
     }
     $('.hcpyardbox').append(`<div class="totalbox"><div class="total"><span>In</span></div></div>`);
