@@ -13,9 +13,28 @@ class Player {
     constructor(id, name) {
         this.name = name;
         this.id = id;
-        this.scores = [];
+        this.score = 0;
     }
-    addScore() {
+    addOutScore(playerid) {
+        let total = this.score;
+        for(let o = 0; o < 9; o++){
+            total += Number($(`#p${playerid}h${o}`).val());
+        }
+        $(`#out${playerid}`).html(total);
+    }
+    addInScore(playerid){
+        let total = this.score;
+        for(let i = 9; i < 18; i++){
+            total += Number($(`#p${playerid}h${i}`).val());
+        }
+        $(`#in${playerid}`).html(total);
+    }
+    totalScore(playerid){
+        let total = this.score;
+        for(let t = 0; t < 18; t++){
+            total += Number($(`#p${playerid}h${t}`).val());
+        }
+        $(`#total${playerid}`).html(total);
     }
 }
 
