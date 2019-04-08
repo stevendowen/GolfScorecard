@@ -195,7 +195,6 @@ function displayPlayers(){
         $(`#p${p}`).append(`<div id="in${p}" class="holescore"></div>`);
         $(`#p${p}`).append(`<div id="total${p}" class="holescore"></div>`);
     }
-    console.log(golfplayers.playerCollection);
 }
 
 function addPlayer(val, event){
