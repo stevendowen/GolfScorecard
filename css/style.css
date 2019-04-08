@@ -176,4 +176,34 @@ body {
   width: 50px;
 }
 
+.sameplayer {
+  display: none;
+  height: 300px;
+  width: 400px;
+  position: absolute;
+  z-index: 5;
+  border-radius: 5px;
+  background-image: url("emoji.png");
+  background-color: #b5bf9e;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.sameplayer .close {
+  font-size: 20px;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
+.sameplayer .sorry {
+  display: flex;
+  position: absolute;
+  top: 10%;
+  left: 20%;
+  font-size: 30px;
+  width: 60%;
+  text-align: center;
+  line-height: 80px;
+}
+
 /*# sourceMappingURL=style.css.map */

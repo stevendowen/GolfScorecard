@@ -5,6 +5,12 @@ class Players{
         this.playerCollection = [];
     }
     addPlayer(id, name){
+        for(let p = 0; p < this.playerCollection.length; p++){
+            if(name === this.playerCollection[p].name){
+                noSamePlayer();
+                this.playerCollection.splice(p, 1);
+            }
+        }
         this.playerCollection.push(new Player(id, name));
     }
 }
