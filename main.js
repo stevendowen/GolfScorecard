@@ -1,7 +1,10 @@
 
 
 let selectedcourse;
-
+let pararray = [];
+let yardsarray = [];
+let totalpar;
+let totalyards;
 const add = (a,b) => a + b;
 
 function showCourses(){
@@ -81,7 +84,8 @@ function loadCourseInfo(){
             <h6>${website}</h6>
             <input class="input" type="text" placeholder="Add Player" onkeyup="addPlayer(this.value, event)">`);
     displayHoles(holes);
-    $('.courseinfo').append(`<span class="teebox">Please Select Tee</span>`);
+    $('.courseinfo').append(`<span class="teebox">Please Select Tee</span>
+    <span class="teebox">To Load Par, Yards, HCP</span>`);
 
     for(let t = 0; t < tees.length; t++){
         let teetype = tees[t].teeType;
@@ -116,8 +120,8 @@ function displayFrontHcpParYards(teeindex){
     let holes = selectedcourse.data.holes;
     let outpararray = [];
     let outyardsarray = [];
-    let totalpar;
-    let totalyards;
+    let totaloutpar;
+    let totaloutyards;
     for(let t = 0; t < 9; t++){
         $('.hcpyardbox').append(`<div>
         <div class="par">${holes[t].teeBoxes[selectedtee].par}</div>
@@ -127,11 +131,13 @@ function displayFrontHcpParYards(teeindex){
         outpararray.push(Number(`${holes[t].teeBoxes[selectedtee].par}`));
         outyardsarray.push(Number(`${holes[t].teeBoxes[selectedtee].yards}`));
     }
-    totalpar = outpararray.reduce(add);
-    totalyards = outyardsarray.reduce(add);
-    $('.hcpyardbox').append(`<div class="totalbox">
-    <div class="total"><span>${totalpar}</span></div>
-    <div class="total"><span>${totalyards}</span></div>
+    totaloutpar = outpararray.reduce(add);
+    totaloutyards = outyardsarray.reduce(add);
+    pararray.push(totaloutpar);
+    yardsarray.push(totaloutyards);
+    $('.hcpyardbox').append(`<div>
+    <div class="par"><span>${totaloutpar}</span></div>
+    <div class="par"><span>${totaloutyards}</span></div>
     </div>`);
     displayBackHcpParYards(teeindex);
 }
@@ -141,8 +147,8 @@ function displayBackHcpParYards(teeindex){
     let holes = selectedcourse.data.holes;
     let inpararray = [];
     let inyardsarray = [];
-    let totalpar;
-    let totalyards;
+    let totalinpar;
+    let totalinyards;
     for(let t = 9; t < holes.length; t++){
         $('.hcpyardbox').append(`<div>
         <div class="par">${holes[t].teeBoxes[selectedtee].par}</div>
@@ -152,15 +158,19 @@ function displayBackHcpParYards(teeindex){
         inpararray.push(Number(`${holes[t].teeBoxes[selectedtee].par}`));
         inyardsarray.push(Number(`${holes[t].teeBoxes[selectedtee].yards}`));
     }
-    totalpar = inpararray.reduce(add);
-    totalyards = inyardsarray.reduce(add);
-    $('.hcpyardbox').append(`<div class="totalbox">
-    <div class="total"><span>${totalpar}</span></div>
-    <div class="total"><span>${totalyards}</span></div>
+    totalinpar = inpararray.reduce(add);
+    totalinyards = inyardsarray.reduce(add);
+    pararray.push(totalinpar);
+    yardsarray.push(totalinyards);
+    totalpar = pararray.reduce(add);
+    totalyards = yardsarray.reduce(add);
+    $('.hcpyardbox').append(`<div>
+    <div class="par"><span>${totalinpar}</span></div>
+    <div class="par"><span>${totalinyards}</span></div>
     </div>`);
-    $('.hcpyardbox').append(`<div class="totalbox">
-    <div class="total"><span>Total</span></div>
-    <div class="total"><span>Total</span></div>
+    $('.hcpyardbox').append(`<div>
+    <div class="par"><span>${totalpar}</span></div>
+    <div class="par"><span>${totalyards}</span></div>
     </div>`);
 }
 
