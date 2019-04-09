@@ -185,15 +185,15 @@ function displayPlayers(){
         for(let o = 0; o < 9; o++){
             $(`#p${p}`).append(`<input id="p${p}h${o}" onfocusout="addScore(${p})" class="holescore">`);
         }
-        if(golfplayers.playerCollection.length === 4){
-            $('.input').hide();
-        }
         $(`#p${p}`).append(`<div id="out${p}" class="holescore"></div>`);
         for(let i = 9; i < 18; i++){
             $(`#p${p}`).append(`<input id="p${p}h${i}" onfocusout="addScore(${p})" class="holescore">`);
         }
         $(`#p${p}`).append(`<div id="in${p}" class="holescore"></div>`);
         $(`#p${p}`).append(`<div id="total${p}" class="holescore"></div>`);
+        if(golfplayers.playerCollection.length === 4){
+            $('.input').hide();
+        }
     }
 }
 

@@ -73,6 +73,7 @@ body {
 }
 .courseinfo .btn {
   height: 25px;
+  line-height: 0;
 }
 
 .titlebox {
