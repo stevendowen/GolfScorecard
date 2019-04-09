@@ -68,6 +68,12 @@ body {
   left: 10px;
   bottom: 0;
 }
+.courseinfo .teebox {
+  margin-bottom: 5px;
+}
+.courseinfo .btn {
+  height: 25px;
+}
 
 .titlebox {
   width: 150px;

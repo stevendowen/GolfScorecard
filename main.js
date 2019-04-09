@@ -91,7 +91,7 @@ function loadCourseInfo(){
         let teetype = tees[t].teeType;
         let teecolor = tees[t].teeColorType;
         $('.courseinfo').append(`<div class="teebox">
-        <button onclick="hideTeeBox(${t})">${teetype} (${teecolor})</button>
+        <button class="btn mdl-button mdl-js-button mdl-js-ripple-effect" onclick="hideTeeBox(${t})">${teetype} (${teecolor})</button>
         </div>`);
     }
     $('.coursemain').fadeIn(600);
