@@ -14,12 +14,16 @@ body {
   display: flex;
   flex-direction: column;
 }
+.home h1 {
+  font-family: "Merriweather", serif;
+}
 
 .coursebox {
   display: none;
 }
 .coursebox h5 {
   text-align: center;
+  font-family: "Merriweather", serif;
 }
 
 .courses {
@@ -42,6 +46,7 @@ body {
 }
 .courses .course .cardbottom .name {
   margin-bottom: 5px;
+  font-family: "Merriweather", serif;
 }
 
 .coursemain {
@@ -59,9 +64,11 @@ body {
 }
 .courseinfo h2, .courseinfo h4 {
   margin: 0;
+  font-family: "Merriweather", serif;
 }
 .courseinfo h6 {
   margin-top: 0;
+  font-family: "Merriweather", serif;
 }
 .courseinfo .input {
   position: absolute;
@@ -69,11 +76,24 @@ body {
   bottom: 0;
 }
 .courseinfo .teebox {
+  width: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   margin-bottom: 5px;
+  border: 1px solid black;
+  border-radius: 5px;
+  background-color: #A7B287;
+  font-family: "Merriweather", serif;
 }
 .courseinfo .btn {
   height: 25px;
   line-height: 0;
+  border: 1px solid black;
+  margin-bottom: 5px;
+  background-color: #EDE8DF;
+  font-family: "Merriweather", serif;
 }
 
 .titlebox {
@@ -106,9 +126,14 @@ body {
   height: 25px;
   width: 50px;
 }
+.scorebox .scorecard #hole {
+  background-color: #3E5E6B;
+  color: #FFFFFF;
+  font-family: "Merriweather", serif;
+}
 
 .playerbox {
-  background-color: #dadfea;
+  background-color: #FFFFFF;
   display: flex;
 }
 .playerbox .namebox {
@@ -127,6 +152,7 @@ body {
   align-items: center;
   width: 150px;
   height: 25px;
+  font-family: "Merriweather", serif;
 }
 
 .out {
@@ -140,6 +166,7 @@ body {
   padding: 0;
   margin: 0;
   text-align: center;
+  font-family: "Merriweather", serif;
 }
 
 .hcpyardbox {
@@ -150,6 +177,20 @@ body {
   border: 1px solid #000000;
   height: 25px;
   width: 50px;
+}
+.hcpyardbox #par {
+  background-color: #DDB144;
+  font-family: "Merriweather", serif;
+}
+.hcpyardbox #yards {
+  background-color: maroon;
+  color: #FFFFFF;
+  font-family: "Merriweather", serif;
+}
+.hcpyardbox #hcp {
+  background-color: #3E5E6B;
+  color: #FFFFFF;
+  font-family: "Merriweather", serif;
 }
 
 .totalbox {
@@ -169,14 +210,14 @@ body {
 }
 
 .sameplayer {
-  display: none;
+  display: flex;
   height: 300px;
   width: 400px;
   position: absolute;
   z-index: 5;
   border-radius: 5px;
   background-image: url("emoji.png");
-  background-color: #b5bf9e;
+  background-color: #A7B287;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -196,6 +237,34 @@ body {
   width: 60%;
   text-align: center;
   line-height: 80px;
+  font-family: "Merriweather", serif;
+}
+
+.endmessage {
+  display: flex;
+  background-color: #A7B287;
+  position: absolute;
+  z-index: 5;
+  height: 300px;
+  width: 400px;
+  border-radius: 5px;
+}
+.endmessage .close {
+  font-size: 20px;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
+.endmessage .message {
+  display: flex;
+  position: absolute;
+  top: 10%;
+  left: 20%;
+  font-size: 30px;
+  width: 60%;
+  text-align: center;
+  line-height: 80px;
+  font-family: "Merriweather", serif;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -26,7 +26,8 @@ function loadCourses() {
                 <img src="${img}">
                 <div class="cardbottom mdl-card__actions">
                 <h2 class="name mdl-card__title-text">${course.name}</h2>
-                <button class="mdl-button mdl-js-button mdl-js-ripple-effect" onclick="hideCourses(${courseid})">Play Course
+                <button class="mdl-button mdl-js-button mdl-js-ripple-effect" onclick="hideCourses(${courseid})">
+                <span class="name">Play Course</span>
                 <i class="fas fa-golf-ball"></i>
                 </button>
                 </div>
@@ -52,12 +53,12 @@ function loadCourse(courseid) {
             selectedcourse = JSON.parse(this.responseText);
             console.log(selectedcourse);
             $('.scorecard').append(`<div class="titlebox">
-            <div class="title"><span>Hole</span></div>
+            <div id="hole" class="title"><span>Hole</span></div>
             </div>`);
             $('.hcpyardbox').append(`<div class="titlebox">
-            <div class="title"><span>Par</span></div>
-            <div class="title"><span>Yards</span></div>
-            <div class="title"><span>Handicap</span></div>
+            <div id="par" class="title"><span>Par</span></div>
+            <div id="yards" class="title"><span>Yards</span></div>
+            <div id="hcp" class="title"><span>Handicap</span></div>
             </div>`);
             loadCourseInfo(courseid);
 
@@ -84,13 +85,15 @@ function loadCourseInfo(){
             <h6>${website}</h6>
             <input class="input" type="text" placeholder="Add Player" onkeyup="addPlayer(this.value, event)">`);
     displayHoles(holes);
-    $('.courseinfo').append(`<span class="teebox">Please Select Tee</span>
-    <span class="teebox">To Load Par, Yards, HCP</span>`);
+    $('.courseinfo').append(`<div class="teebox">
+    <span>Please Select Tee</span>
+    <span>To Load Par, Yards, HCP</span>
+    </div>`);
 
     for(let t = 0; t < tees.length; t++){
         let teetype = tees[t].teeType;
         let teecolor = tees[t].teeColorType;
-        $('.courseinfo').append(`<div class="teebox">
+        $('.teebox').append(`<div>
         <button class="btn mdl-button mdl-js-button mdl-js-ripple-effect" onclick="hideTeeBox(${t})">${teetype} (${teecolor})</button>
         </div>`);
     }
@@ -100,15 +103,15 @@ function loadCourseInfo(){
 function displayHoles(holes){
     for(let f = 0; f < 9; f++){
         let frontnine = holes[f].hole;
-        $('.scorecard').append(`<div class="hole">${frontnine}</div>`);
+        $('.scorecard').append(`<div id="hole" class="hole">${frontnine}</div>`);
     }
-    $('.scorecard').append(`<div class="hole"><span>Out</span>`);
+    $('.scorecard').append(`<div id="hole" class="hole"><span>Out</span>`);
     for(let b = 9; b < holes.length; b++){
         let backnine = holes[b].hole;
-        $('.scorecard').append(`<div class="hole">${backnine}</div>`);
+        $('.scorecard').append(`<div id="hole" class="hole">${backnine}</div>`);
     }
-    $('.scorecard').append(`<div class="hole"><span>In</span></div>`);
-    $('.scorecard').append(`<div class="hole"><span>Total</span></div>`);
+    $('.scorecard').append(`<div id="hole" class="hole"><span>In</span></div>`);
+    $('.scorecard').append(`<div id="hole" class="hole"><span>Total</span></div>`);
 }
 
 function hideTeeBox(teeindex){
@@ -124,9 +127,9 @@ function displayFrontHcpParYards(teeindex){
     let totaloutyards;
     for(let t = 0; t < 9; t++){
         $('.hcpyardbox').append(`<div>
-        <div class="par">${holes[t].teeBoxes[selectedtee].par}</div>
-        <div class="par">${holes[t].teeBoxes[selectedtee].yards}</div>
-        <div class="par">${holes[t].teeBoxes[selectedtee].hcp}</div>
+        <div id="par" class="par">${holes[t].teeBoxes[selectedtee].par}</div>
+        <div id="yards" class="par">${holes[t].teeBoxes[selectedtee].yards}</div>
+        <div id="hcp" class="par">${holes[t].teeBoxes[selectedtee].hcp}</div>
         </div>`);
         outpararray.push(Number(`${holes[t].teeBoxes[selectedtee].par}`));
         outyardsarray.push(Number(`${holes[t].teeBoxes[selectedtee].yards}`));
@@ -136,8 +139,8 @@ function displayFrontHcpParYards(teeindex){
     pararray.push(totaloutpar);
     yardsarray.push(totaloutyards);
     $('.hcpyardbox').append(`<div>
-    <div class="par"><span>${totaloutpar}</span></div>
-    <div class="par"><span>${totaloutyards}</span></div>
+    <div id="par" class="par"><span>${totaloutpar}</span></div>
+    <div id="yards" class="par"><span>${totaloutyards}</span></div>
     </div>`);
     displayBackHcpParYards(teeindex);
 }
@@ -151,9 +154,9 @@ function displayBackHcpParYards(teeindex){
     let totalinyards;
     for(let t = 9; t < holes.length; t++){
         $('.hcpyardbox').append(`<div>
-        <div class="par">${holes[t].teeBoxes[selectedtee].par}</div>
-        <div class="par">${holes[t].teeBoxes[selectedtee].yards}</div>
-        <div class="par">${holes[t].teeBoxes[selectedtee].hcp}</div>
+        <div id="par" class="par">${holes[t].teeBoxes[selectedtee].par}</div>
+        <div id="yards" class="par">${holes[t].teeBoxes[selectedtee].yards}</div>
+        <div id="hcp" class="par">${holes[t].teeBoxes[selectedtee].hcp}</div>
         </div>`);
         inpararray.push(Number(`${holes[t].teeBoxes[selectedtee].par}`));
         inyardsarray.push(Number(`${holes[t].teeBoxes[selectedtee].yards}`));
@@ -165,12 +168,12 @@ function displayBackHcpParYards(teeindex){
     totalpar = pararray.reduce(add);
     totalyards = yardsarray.reduce(add);
     $('.hcpyardbox').append(`<div>
-    <div class="par"><span>${totalinpar}</span></div>
-    <div class="par"><span>${totalinyards}</span></div>
+    <div id="par" class="par"><span>${totalinpar}</span></div>
+    <div id="yards" class="par"><span>${totalinyards}</span></div>
     </div>`);
     $('.hcpyardbox').append(`<div>
-    <div class="par"><span>${totalpar}</span></div>
-    <div class="par"><span>${totalyards}</span></div>
+    <div id="par" class="par"><span class="totalpar">${totalpar}</span></div>
+    <div id="yards" class="par"><span>${totalyards}</span></div>
     </div>`);
 }
 
@@ -183,11 +186,11 @@ function displayPlayers(){
         $('.namebox').append(`<div class="player">${players}</div>`);
         $('.scores').append(`<div id="p${p}" class="out"></div>`);
         for(let o = 0; o < 9; o++){
-            $(`#p${p}`).append(`<input id="p${p}h${o}" onfocusout="addScore(${p})" class="holescore">`);
+            $(`#p${p}`).append(`<input id="p${p}h${o}" onfocusout="addScore(${p}, value)" class="holescore">`);
         }
         $(`#p${p}`).append(`<div id="out${p}" class="holescore"></div>`);
         for(let i = 9; i < 18; i++){
-            $(`#p${p}`).append(`<input id="p${p}h${i}" onfocusout="addScore(${p})" class="holescore">`);
+            $(`#p${p}`).append(`<input id="p${p}h${i}" onfocusout="addScore(${p}, value)" class="holescore">`);
         }
         $(`#p${p}`).append(`<div id="in${p}" class="holescore"></div>`);
         $(`#p${p}`).append(`<div id="total${p}" class="holescore"></div>`);
@@ -200,25 +203,44 @@ function displayPlayers(){
 function addPlayer(val, event){
     switch(event.which){
         case 13:
-            let id = golfplayers.playerCollection.length + 1;
-            golfplayers.addPlayer(id, val);
-            displayPlayers();
-            $('.input').val('');
-            $('.input').focus();
-            break;
+            if(val !== ''){
+                let id = golfplayers.playerCollection.length + 1;
+                golfplayers.addPlayer(id, val);
+                displayPlayers();
+                $('.input').val('');
+                $('.input').focus();
+                break;
+            }
     }
 }
 
-function addScore(playerid){
+function addScore(playerid, val){
     golfplayers.playerCollection[playerid].addOutScore(playerid);
     golfplayers.playerCollection[playerid].addInScore(playerid);
     golfplayers.playerCollection[playerid].totalScore(playerid);
+    golfplayers.playerCollection[playerid].addScoreArray(val, playerid);
 }
 
 function noSamePlayer(){
-    $('.sameplayer').show();
+    $('body').append(`<div class="sameplayer">
+    <i class=" close fas fa-window-close" onclick="closePlayerMessage()"></i>
+    <span class="sorry">Sorry, You can't have the same name.</span>
+    </div>`);
+}
+
+function showEndScore(playerid){
+    if($(`#total${playerid}`).html() > 72){
+        $('body').append(`<div class="endmessage">
+            <i class=" close fas fa-window-close" onclick="closePlayerMessage()"></i>
+            <span class="message">Better Luck Next Time</span></div>`);
+    } else {
+        $('body').append(`<div class="endmessage">
+            <i class=" close fas fa-window-close" onclick="closePlayerMessage()"></i>
+            <span class="message">On To The Pros</span></div>`);
+    }
 }
 
 function closePlayerMessage(){
-    $('.sameplayer').hide();
+    $('.sameplayer').remove();
+    $('.endmessage').remove();
 }

@@ -20,6 +20,7 @@ class Player {
         this.name = name;
         this.id = id;
         this.score = 0;
+        this.scoreArray = [];
     }
     addOutScore(playerid) {
         let total = this.score;
@@ -41,6 +42,12 @@ class Player {
             total += Number($(`#p${playerid}h${t}`).val());
         }
         $(`#total${playerid}`).html(total);
+    }
+    addScoreArray(val, playerid){
+        this.scoreArray.push(Number(val));
+        if(this.scoreArray.length === 18){
+            setTimeout(showEndScore, 400, playerid);
+        }
     }
 }
 

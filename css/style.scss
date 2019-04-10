@@ -1,3 +1,7 @@
+
+
+$myfont: 'Merriweather', serif;
+
 body{
   width: 100%;
   display: flex;
@@ -13,6 +17,10 @@ body{
 .home{
   display: flex;
   flex-direction: column;
+
+  h1{
+    font-family: $myfont;
+  }
 }
 
 .coursebox{
@@ -20,6 +28,7 @@ body{
 
   h5{
     text-align: center;
+    font-family: $myfont;
   }
 }
 
@@ -44,6 +53,7 @@ body{
 
       .name{
         margin-bottom: 5px;
+        font-family: $myfont;
       }
     }
   }
@@ -64,9 +74,11 @@ body{
 
   h2, h4{
     margin: 0;
+    font-family: $myfont;
   }
   h6{
     margin-top: 0;
+    font-family: $myfont;
   }
   .input{
     position: absolute;
@@ -74,11 +86,24 @@ body{
     bottom: 0;
   }
   .teebox{
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     margin-bottom: 5px;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: #A7B287;
+    font-family: $myfont;
   }
   .btn{
     height: 25px;
     line-height: 0;
+    border: 1px solid black;
+    margin-bottom: 5px;
+    background-color: #EDE8DF;
+    font-family: $myfont;
   }
 }
 
@@ -113,11 +138,17 @@ body{
       height: 25px;
       width: 50px;
     }
+
+    #hole{
+      background-color: #3E5E6B;
+      color: #FFFFFF;
+      font-family: $myfont;
+    }
   }
 }
 
 .playerbox{
-  background-color: #dadfea;
+  background-color: #FFFFFF;
   display: flex;
 
   .namebox{
@@ -137,6 +168,7 @@ body{
       align-items: center;
       width: 150px;
       height: 25px;
+      font-family: $myfont;
     }
   }
 }
@@ -152,6 +184,7 @@ body{
   padding: 0;
   margin: 0;
   text-align: center;
+  font-family: $myfont;
 }
 
 .hcpyardbox{
@@ -162,6 +195,21 @@ body{
     border: 1px solid #000000;
     height: 25px;
     width: 50px;
+  }
+
+  #par{
+    background-color: #DDB144;
+    font-family: $myfont;
+  }
+  #yards{
+    background-color: maroon;
+    color: #FFFFFF;
+    font-family: $myfont;
+  }
+  #hcp{
+    background-color: #3E5E6B;
+    color: #FFFFFF;
+    font-family: $myfont;
   }
 }
 
@@ -183,14 +231,14 @@ body{
 }
 
 .sameplayer{
-  display: none;
+  display: flex;
   height: 300px;
   width: 400px;
   position: absolute;
   z-index: 5;
   border-radius: 5px;
   background-image: url("emoji.png");
-  background-color: rgb(181, 191, 158);
+  background-color: #A7B287;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -211,5 +259,35 @@ body{
     width: 60%;
     text-align: center;
     line-height: 80px;
+    font-family: $myfont;
+  }
+}
+
+.endmessage{
+  display: flex;
+  background-color: #A7B287;
+  position: absolute;
+  z-index: 5;
+  height: 300px;
+  width: 400px;
+  border-radius: 5px;
+
+  .close{
+    font-size: 20px;
+    position: absolute;
+    right: 5px;
+    top: 5px;
+  }
+
+  .message{
+    display: flex;
+    position: absolute;
+    top: 10%;
+    left: 20%;
+    font-size: 30px;
+    width: 60%;
+    text-align: center;
+    line-height: 80px;
+    font-family: $myfont;
   }
 }
