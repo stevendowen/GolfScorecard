@@ -229,14 +229,19 @@ function noSamePlayer(){
 }
 
 function showEndScore(playerid){
+    let score = $(`#total${playerid}`).html();
     if($(`#total${playerid}`).html() > 72){
-        $('body').append(`<div class="endmessage">
+        $('body').append(`<div class="endmessage bad">
             <i class=" close fas fa-window-close" onclick="closePlayerMessage()"></i>
-            <span class="message">Better Luck Next Time</span></div>`);
+            <div id="bad" class="message"><span>Better Luck Next Time</span></div>
+            <div class="message"><span>${score}/72 Par</span></div>
+            </div>`);
     } else {
-        $('body').append(`<div class="endmessage">
+        $('body').append(`<div class="endmessage good">
             <i class=" close fas fa-window-close" onclick="closePlayerMessage()"></i>
-            <span class="message">On To The Pros</span></div>`);
+            <div id="good" class="message"><span>On To The Pros</span></div>
+            <div class="message"><span>${score}/72 Par</span></div>
+            </div>`);
     }
 }
 

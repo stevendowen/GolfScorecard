@@ -265,6 +265,9 @@ body{
 
 .endmessage{
   display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   background-color: #A7B287;
   position: absolute;
   z-index: 5;
@@ -281,13 +284,33 @@ body{
 
   .message{
     display: flex;
-    position: absolute;
-    top: 10%;
-    left: 20%;
+    justify-content: center;
     font-size: 30px;
-    width: 60%;
     text-align: center;
-    line-height: 80px;
+    width: 60%;
+    line-height: 100px;
     font-family: $myfont;
   }
+}
+
+#good{
+  margin-top: 80px;
+}
+
+#bad{
+  margin-top: -15px;
+}
+
+.bad{
+  background-image: url("no-good.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.good{
+  background-image: url("good-job.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
 }
