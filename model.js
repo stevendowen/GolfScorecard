@@ -44,9 +44,11 @@ class Player {
         $(`#total${playerid}`).html(total);
     }
     addScoreArray(val, playerid){
-        this.scoreArray.push(Number(val));
-        if(this.scoreArray.length === 18){
-            setTimeout(showEndScore, 400, playerid);
+        if(val !== ''){
+            this.scoreArray.push(Number(val));
+            if(this.scoreArray.length === 18){
+                setTimeout(showEndScore, 400, playerid);
+            }
         }
     }
 }
